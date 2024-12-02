@@ -165,7 +165,8 @@ public class ClienteServicio {
         List<TablaAmortizacion> tablaAmortizaciones = new ArrayList<>();
         double saldoPendiente = prestamo.getMonto();
         double r = prestamo.getTasaInteres() / 12;
-        int n = prestamo.getPlazo() * 12;
+        double anio = prestamo.getPlazo()/12;
+        double n = anio* 12;
 
         for (int i = 1; i <= n; i++) {
             double interes = saldoPendiente * r;

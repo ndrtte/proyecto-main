@@ -59,7 +59,7 @@ public class PrestamoServicio {
                 return "El prestamo con codigo: "+tipo+" no es valido.";
         }
 
-        if (prestamoDTO.getPlazo() < 1) {
+        if (prestamoDTO.getPlazo() < 12) {
             return "El plazo mínimo para un préstamo es de 1 año";
         }
 
@@ -103,7 +103,8 @@ public class PrestamoServicio {
 
     private double calcularCuota(Prestamos prestamo) {
         double r = prestamo.getTasaInteres() / 12;
-        int n = prestamo.getPlazo() * 12; 
+        double anio = prestamo.getPlazo()/12;
+        double n = anio * 12; 
         double P = prestamo.getMonto(); 
 
         return (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);

@@ -102,7 +102,7 @@ public class ClienteServicio {
                 if (tipo == PrestamoEnum.Hipotecario.getC() ||
                         tipo == PrestamoEnum.Personal.getC() ||
                         tipo == PrestamoEnum.Vehicular.getC()) {
-                    if (nvoPrestamo.getPlazo() >= 1) {
+                    if (nvoPrestamo.getPlazo() >= 12) {
                         nvoPrestamo.setEstado('P');
                         nvoPrestamo.setTipoPrestamo(tipo);
 
@@ -154,7 +154,8 @@ public class ClienteServicio {
 
     private double calcularCuota(Prestamos prestamo) {
         double r = prestamo.getTasaInteres() / 12;
-        int n = prestamo.getPlazo() * 12;
+        double anio  = prestamo.getPlazo()/12;
+        double n = anio * 12;
         double P = prestamo.getMonto();
 
         return (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
